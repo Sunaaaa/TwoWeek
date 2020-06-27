@@ -25,29 +25,32 @@ public class Main10819 {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        System.out.println(N);
-        System.out.println(Arrays.toString(arr));
-        System.out.println("perm");
         perm(0);
-        System.out.println("perm 끝");
-
+        System.out.println(max);
 
     }    
+    static int max;
     static void perm(int r){
-        System.out.println(r==N-1);
         if (r == N) {
-            System.out.println(Arrays.toString(result));            
-            System.out.println("perm ing ");
+            calc();
             return;
         }
-        System.out.println("xxxxxxxxxx");
-        System.out.println(N);
         for (int i = 0; i < N; i++) {
             if (visited[i]) continue;
             result[r] = arr[i];
             visited[i] = true;
             perm(r+1);
             visited[i] = false;
+        }
+    }
+
+    static void calc(){
+        int sum = 0;
+        for (int i = 0; i < N-1; i++) {
+            sum += Math.abs(result[i]-result[i+1]);            
+        }        
+        if (sum > max) {
+            max = sum;
         }
     }
 }
